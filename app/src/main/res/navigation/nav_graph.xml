@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+app:startDestination="@id/grainListFragment">
+
+<fragment
+    android:id="@+id/grainListFragment"
+    android:name="com.example.projetograo.GraoListFragment"
+    android:label="Lista de Grãos"
+    tools:layout="@layout/fragment_grao_list">
+    <action
+        android:id="@+id/action_graoListFragment_to_addGraoFragment"
+        app:destination="@id/addGraoFragment" />
+</fragment>
+
+<fragment
+    android:id="@+id/addGraoFragment"
+    android:nome="com.example.projetograo.AddGraoFragment"
+    android:label="Adicionar Grão"
+    tools:layout="@layout/fragment_add_grao" />
+</navigation>
