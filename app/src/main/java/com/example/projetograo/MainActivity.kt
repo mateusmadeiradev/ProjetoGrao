@@ -1,38 +1,28 @@
 package com.example.projetograo
 
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
-import androidx.activity.ComponentActivity
-
-//import androidx.activity.compose.setContent
-//import androidx.activity.enableEdgeToEdge
-//import androidx.compose.foundation.layout.fillMaxSize
-//import androidx.compose.foundation.layout.padding
-//import androidx.compose.material3.Scaffold
-//import androidx.compose.material3.Text
-//import androidx.compose.runtime.Composable
-//import androidx.compose.ui.Modifier
-//import androidx.compose.ui.tooling.preview.Preview
-import com.example.projetograo.ui.theme.ProjetoGraoTheme
-
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.projetograo.databinding.ActivityMainBinding // Importando a classe de binding gerada
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding // Declaração da variável de binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        // Inflate do layout usando View Binding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root) // Define a View do conteúdo
+
+        // Configuração do NavController
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
+        binding.toolbar.setupWithNavController(navController, appBarConfiguration) // Usando o binding para acessar a toolbar
     }
 }

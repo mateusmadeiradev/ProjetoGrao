@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
     id("com.google.devtools.ksp") // Habilita o plugin KSP
 }
 android {
@@ -17,6 +18,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        //dataBinding = false
     }
     buildTypes {
         release {
@@ -35,14 +37,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        dataBinding = true
-    }
+
 }
 dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
-    implementation ("androidx.navigation:navigation-ui:2.8.3")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.8.3")
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,6 +53,7 @@ dependencies {
 
     implementation(libs.androidx.room.ktx)
     implementation(libs.navigation.fragment.ktx)
+    implementation(libs.androidx.material3.android)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

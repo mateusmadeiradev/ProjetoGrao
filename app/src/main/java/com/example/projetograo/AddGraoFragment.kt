@@ -10,16 +10,17 @@ import com.example.projetograo.data.Grao
 import com.example.projetograo.databinding.FragmentAddGraoBinding
 import androidx.lifecycle.ViewModelProvider
 
-
 class AddGraoFragment : Fragment() {
     private lateinit var viewModel: GraoViewModel
-    private lateinit var binding: FragmentAddGraoBinding
+    private var _binding: FragmentAddGraoBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentAddGraoBinding.inflate(inflater, container, false)
+    ): View {
+        // Inflate the layout using View Binding
+        _binding = FragmentAddGraoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,7 +47,12 @@ class AddGraoFragment : Fragment() {
 
             viewModel.insert(grao)
             findNavController(view).navigateUp()
-
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Limpa a referência para evitar vazamentos de memória
+        _binding = null
     }
 }

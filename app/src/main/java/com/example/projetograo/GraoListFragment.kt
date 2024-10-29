@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projetograo.adapter.GraoAdapter
-import com.example.projetograo.databinding.FragmentGraoListBinding
 import androidx.navigation.fragment.findNavController
+import com.example.projetograo.databinding.FragmentGraoListBinding
 
 class GraoListFragment : Fragment() {
     private lateinit var viewModel: GraoViewModel
@@ -22,6 +22,7 @@ class GraoListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout using View Binding
         _binding = FragmentGraoListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,10 +31,12 @@ class GraoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(GraoViewModel::class.java)
 
+        // Inicializa o adapter com uma lista vazia
         adapter = GraoAdapter(emptyList())
         binding.grainList.adapter = adapter
         binding.grainList.layoutManager = LinearLayoutManager(context)
 
+        // Observa a lista de graos no ViewModel
         viewModel.allGraos.observe(viewLifecycleOwner, Observer { graos ->
             adapter = GraoAdapter(graos)
             binding.grainList.adapter = adapter
@@ -46,6 +49,6 @@ class GraoListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null // Evitar vazamentos de memória
+        _binding = null // Evita vazamentos de memória
     }
 }

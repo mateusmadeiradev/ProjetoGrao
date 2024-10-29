@@ -16,7 +16,7 @@ app:startDestination="@id/grainListFragment">
 
 <fragment
     android:id="@+id/addGraoFragment"
-    android:nome="com.example.projetograo.AddGraoFragment"
+    android:name="com.example.projetograo.AddGraoFragment"
     android:label="Adicionar Grão"
     tools:layout="@layout/fragment_add_grao" />
 </navigation>
