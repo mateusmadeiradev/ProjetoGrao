@@ -41,4 +41,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Endereço" />
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar" />
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Excluir" />
 </LinearLayout>

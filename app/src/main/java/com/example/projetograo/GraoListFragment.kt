@@ -1,16 +1,17 @@
 package com.example.projetograo
 
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projetograo.adapter.GraoAdapter
-import androidx.navigation.fragment.findNavController
 import com.example.projetograo.databinding.FragmentGraoListBinding
+import android.app.AlertDialog
 
 class GraoListFragment : Fragment() {
     private lateinit var viewModel: GraoViewModel
@@ -31,20 +32,42 @@ class GraoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(GraoViewModel::class.java)
 
-        // Inicializa o adapter com uma lista vazia
-        adapter = GraoAdapter(emptyList())
-        binding.grainList.adapter = adapter
+        // Configura o layout do RecyclerView
         binding.grainList.layoutManager = LinearLayoutManager(context)
 
-        // Observa a lista de graos no ViewModel
+        // Observa a lista de grãos no ViewModel e atualiza o adapter
         viewModel.allGraos.observe(viewLifecycleOwner, Observer { graos ->
-            adapter = GraoAdapter(graos)
+            adapter = GraoAdapter(graos, { grao ->
+                // Navegar para a tela de edição com o ID do Grão usando um Bundle
+                val bundle = Bundle().apply {
+                    putInt("graoId", grao.id) // Supondo que `id` é do tipo Int
+                }
+                findNavController().navigate(R.id.action_graoListFragment_to_addGraoFragment, bundle)
+            }, { grao ->
+                // Excluir o Grão selecionado
+                viewModel.deleteGrao(grao)
+            })
             binding.grainList.adapter = adapter
         })
 
+        // Configura o botão para adicionar um novo grão
         binding.addGrainButton.setOnClickListener {
             findNavController().navigate(R.id.action_graoListFragment_to_addGraoFragment)
         }
+
+        // Configura o botão de teste para exibir dados
+//        binding.testBot.setOnClickListener {
+//            viewModel.allGraos.observe(viewLifecycleOwner, Observer { graos ->
+//                val graoInfo = graos.joinToString("\n") { grao ->
+//                    "Nome: ${grao.nome}, Quantidade: ${grao.quantidade}, Peso: ${grao.pesoTotal}"
+//                }
+//                AlertDialog.Builder(requireContext())
+//                    .setTitle("Dados dos Grãos")
+//                    .setMessage(graoInfo.ifEmpty { "Nenhum dado encontrado" })
+//                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+//                    .show()
+//            })
+//        }
     }
 
     override fun onDestroyView() {

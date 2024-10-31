@@ -1,65 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddGraoFragment">
 
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tituloCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastro de Entradas"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Nome do Grão -->
+    <TextView
+        android:id="@+id/nomeText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nome do Grão"
+        app:layout_constraintTop_toBottomOf="@id/tituloCadastro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
     <EditText
         android:id="@+id/nome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nome do Grão"
-        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Digite o nome do grão"
+        app:layout_constraintTop_toBottomOf="@+id/nomeText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Quantidade de Sacas -->
+    <TextView
+        android:id="@+id/quantidadeText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Quantidade de Sacas"
+        app:layout_constraintTop_toBottomOf="@id/nome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <EditText
         android:id="@+id/quantidade"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Quantidade de Sacas"
-        app:layout_constraintTop_toBottomOf="@id/nome"
+        android:hint="Digite a quantidade"
+        app:layout_constraintTop_toBottomOf="@id/quantidadeText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Peso Total -->
+    <TextView
+        android:id="@+id/pesoTotalText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Peso Total"
+        app:layout_constraintTop_toBottomOf="@id/quantidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <EditText
         android:id="@+id/pesoTotal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Peso Total"
-        app:layout_constraintTop_toBottomOf="@id/quantidade"
+        android:hint="Digite o peso total"
+        app:layout_constraintTop_toBottomOf="@id/pesoTotalText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Nome do Produtor -->
+    <TextView
+        android:id="@+id/nomeProdutorText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nome do Produtor"
+        app:layout_constraintTop_toBottomOf="@id/pesoTotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <EditText
         android:id="@+id/nomeProdutor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nome do Produtor"
-        app:layout_constraintTop_toBottomOf="@id/pesoTotal"
+        android:hint="Digite o nome do produtor"
+        app:layout_constraintTop_toBottomOf="@id/nomeProdutorText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Telefone -->
+    <TextView
+        android:id="@+id/telefoneText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Telefone"
+        app:layout_constraintTop_toBottomOf="@id/nomeProdutor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <EditText
         android:id="@+id/telefone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Telefone"
-        app:layout_constraintTop_toBottomOf="@id/nomeProdutor"
+        android:hint="Digite o telefone"
+        app:layout_constraintTop_toBottomOf="@id/telefoneText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Endereço -->
+    <TextView
+        android:id="@+id/enderecoText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Endereço"
+        app:layout_constraintTop_toBottomOf="@id/telefone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <EditText
         android:id="@+id/endereco"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Endereço"
-        app:layout_constraintTop_toBottomOf="@id/telefone"
+        android:hint="Digite o endereço"
+        app:layout_constraintTop_toBottomOf="@id/enderecoText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Botão de Salvar -->
     <Button
         android:id="@+id/save_grao_button"
         android:layout_width="wrap_content"
@@ -67,6 +148,7 @@
         android:text="Salvar Grão"
         app:layout_constraintTop_toBottomOf="@id/endereco"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

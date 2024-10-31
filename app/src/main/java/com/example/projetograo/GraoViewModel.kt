@@ -1,6 +1,7 @@
 package com.example.projetograo
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
@@ -22,6 +23,7 @@ class GraoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun insert(grao: Grao) = viewModelScope.launch(Dispatchers.IO) {
+        Log.d("GrainViewModel", "Inserting grain: $grao")
         repository.insert(grao)
     }
 
@@ -29,7 +31,12 @@ class GraoViewModel(application: Application) : AndroidViewModel(application) {
         repository.update(grao)
     }
 
-    fun delete(grao: Grao) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteGrao(grao: Grao) = viewModelScope.launch(Dispatchers.IO) {
         repository.delete(grao)
+    }
+
+    // Novo método para buscar grão por ID
+    fun getGraoById(id: Int): LiveData<Grao?> {
+        return repository.getGraoById(id)
     }
 }

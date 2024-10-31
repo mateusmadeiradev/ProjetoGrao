@@ -18,7 +18,7 @@ abstract class GraoDatabase : RoomDatabase() {
                 instance ?: Room.databaseBuilder(
                     context.applicationContext,
                     GraoDatabase::class.java,
-                    "grain_database"
+                    "grao_database"
                 ).build().also { instance = it }
             }
         }

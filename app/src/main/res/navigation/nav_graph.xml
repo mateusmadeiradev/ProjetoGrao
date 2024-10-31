@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-app:startDestination="@id/grainListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/graoListFragment">
 
-<fragment
-    android:id="@+id/grainListFragment"
-    android:name="com.example.projetograo.GraoListFragment"
-    android:label="Lista de Grãos"
-    tools:layout="@layout/fragment_grao_list">
-    <action
-        android:id="@+id/action_graoListFragment_to_addGraoFragment"
-        app:destination="@id/addGraoFragment" />
-</fragment>
+    <!-- Fragment da Lista de Grãos -->
+    <fragment
+        android:id="@+id/graoListFragment"
+        android:name="com.example.projetograo.GraoListFragment"
+        android:label="Lista de Grãos">
 
-<fragment
-    android:id="@+id/addGraoFragment"
-    android:name="com.example.projetograo.AddGraoFragment"
-    android:label="Adicionar Grão"
-    tools:layout="@layout/fragment_add_grao" />
+        <!-- Ação para navegar até o fragmento de adicionar/editar grão -->
+        <action
+            android:id="@+id/action_graoListFragment_to_addGraoFragment"
+            app:destination="@id/addGraoFragment" />
+    </fragment>
+
+    <!-- Fragment de Adicionar/Editar Grão -->
+    <fragment
+        android:id="@+id/addGraoFragment"
+        android:name="com.example.projetograo.AddGraoFragment"
+        android:label="Adicionar Grão" />
+
 </navigation>

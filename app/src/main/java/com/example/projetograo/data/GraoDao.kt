@@ -1,5 +1,6 @@
 package com.example.projetograo.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -21,4 +22,7 @@ interface GraoDao {
 
     @Query("SELECT * FROM graos")
     fun getAllGraos(): Flow<List<Grao>>
+
+    @Query("SELECT * FROM graos WHERE id = :id LIMIT 1")
+    fun getGraoById(id: Int): LiveData<Grao?>
 }
