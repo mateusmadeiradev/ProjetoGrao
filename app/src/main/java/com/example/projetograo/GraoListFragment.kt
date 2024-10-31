@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projetograo.adapter.GraoAdapter
 import com.example.projetograo.databinding.FragmentGraoListBinding
 import android.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
 
 class GraoListFragment : Fragment() {
     private lateinit var viewModel: GraoViewModel
@@ -68,7 +70,28 @@ class GraoListFragment : Fragment() {
 //                    .show()
 //            })
 //        }
+
+        binding.searchField.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString()
+                viewModel.searchGraos(query).observe(viewLifecycleOwner, Observer { graos ->
+                    adapter = GraoAdapter(graos, { grao ->
+                        val bundle = Bundle().apply {
+                            putInt("graoId", grao.id)
+                        }
+                        findNavController().navigate(R.id.action_graoListFragment_to_addGraoFragment, bundle)
+                    }, { grao ->
+                        viewModel.deleteGrao(grao)
+                    })
+                    binding.grainList.adapter = adapter
+                })
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

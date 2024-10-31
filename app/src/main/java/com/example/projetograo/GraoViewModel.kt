@@ -39,4 +39,9 @@ class GraoViewModel(application: Application) : AndroidViewModel(application) {
     fun getGraoById(id: Int): LiveData<Grao?> {
         return repository.getGraoById(id)
     }
+
+    fun searchGraos(query: String): LiveData<List<Grao>> {
+        return repository.searchGraos(query).asLiveData()
+    }
+
 }

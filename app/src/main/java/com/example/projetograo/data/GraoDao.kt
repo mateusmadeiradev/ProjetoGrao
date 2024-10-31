@@ -25,4 +25,7 @@ interface GraoDao {
 
     @Query("SELECT * FROM graos WHERE id = :id LIMIT 1")
     fun getGraoById(id: Int): LiveData<Grao?>
+
+    @Query("SELECT * FROM graos WHERE nome LIKE :searchQuery")
+    fun searchGraos(searchQuery: String): Flow<List<Grao>>
 }

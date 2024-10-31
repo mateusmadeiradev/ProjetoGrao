@@ -21,4 +21,8 @@ class GraoRepository(private val graoDao: GraoDao) {
     suspend fun delete(grain: Grao) {
         graoDao.delete(grain)
     }
+
+    fun searchGraos(searchQuery: String): Flow<List<Grao>> {
+        return graoDao.searchGraos("%$searchQuery%")
+    }
 }
