@@ -25,7 +25,7 @@ class GraoListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout using View Binding
+
         _binding = FragmentGraoListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -56,20 +56,6 @@ class GraoListFragment : Fragment() {
         binding.addGrainButton.setOnClickListener {
             findNavController().navigate(R.id.action_graoListFragment_to_addGraoFragment)
         }
-
-        // Configura o botão de teste para exibir dados
-//        binding.testBot.setOnClickListener {
-//            viewModel.allGraos.observe(viewLifecycleOwner, Observer { graos ->
-//                val graoInfo = graos.joinToString("\n") { grao ->
-//                    "Nome: ${grao.nome}, Quantidade: ${grao.quantidade}, Peso: ${grao.pesoTotal}"
-//                }
-//                AlertDialog.Builder(requireContext())
-//                    .setTitle("Dados dos Grãos")
-//                    .setMessage(graoInfo.ifEmpty { "Nenhum dado encontrado" })
-//                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-//                    .show()
-//            })
-//        }
 
         binding.searchField.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

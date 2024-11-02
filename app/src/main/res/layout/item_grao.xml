@@ -40,7 +40,7 @@
         android:id="@+id/endereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Endereço" />
+        android:text="Endereço do Produtor" />
 
     <Button
         android:id="@+id/btnEdit"

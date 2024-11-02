@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import com.example.projetograo.data.Grao
 import com.example.projetograo.databinding.FragmentAddGraoBinding
@@ -30,7 +31,7 @@ class AddGraoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout using View Binding
+
         _binding = FragmentAddGraoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -55,15 +56,22 @@ class AddGraoFragment : Fragment() {
         }
 
         binding.saveGraoButton.setOnClickListener {
-            val nome = binding.nome.text.toString()
+            val nome = binding.nome.text.toString().trim()
             val quantidade = binding.quantidade.text.toString().toDoubleOrNull() ?: 0.0
             val pesoTotal = binding.pesoTotal.text.toString().toDoubleOrNull() ?: 0.0
-            val nomeProdutor = binding.nomeProdutor.text.toString()
-            val telefone = binding.telefone.text.toString()
-            val endereco = binding.endereco.text.toString()
+            val nomeProdutor = binding.nomeProdutor.text.toString().trim()
+            val telefone = binding.telefone.text.toString().trim()
+            val endereco = binding.endereco.text.toString().trim()
+
+            // Verifica se algum campo obrigatório está vazio
+            if (nome.isEmpty() || quantidade == null || pesoTotal == null || nomeProdutor.isEmpty() || telefone.isEmpty() || endereco.isEmpty()) {
+                // Mostra uma mensagem de erro ao usuário
+                Toast.makeText(requireContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener // Sai do listener sem prosseguir
+            }
 
             val grao = Grao(
-                id = graoId ?: 0, // Se for um novo grão, o ID pode ser 0 ou deixado em branco
+                id = graoId ?: 0,
                 nome = nome,
                 quantidade = quantidade,
                 pesoTotal = pesoTotal,
